@@ -1,0 +1,24 @@
+# Maintainer: Aditya Shakya <@adi1090x>
+
+pkgname=xfce-configs
+pkgver=1.0
+pkgrel=1
+pkgdesc="XFCE desktop configurations for Archcraft"
+arch=('any')
+license=('GPL3')
+makedepends=('git')
+depends=()
+conflicts=()
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+
+package() {
+	local _target_dir=${pkgdir}/etc/skel
+	mkdir -p ${pkgdir}/etc/skel
+
+	cp -rf ${srcdir}/.config			"${_target_dir}"
+
+	install -Dm644 ${srcdir}/'.dmrc'	"${_target_dir}"/'.dmrc'
+	install -Dm644 ${srcdir}/'.face'	"${_target_dir}"/'.face'
+	install -Dm644 ${srcdir}/'.vimrc'	"${_target_dir}"/'.vimrc'
+}

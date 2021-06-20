@@ -1,0 +1,41 @@
+# Maintainer: Aditya Shakya <@adi1090x>
+
+pkgname=xfce-hooks
+pkgver=1.0
+pkgrel=1
+pkgdesc='Archcraft pacman hooks'
+arch=('any')
+license=('GPL3')
+conflicts=('archcraft-hooks')
+
+source=(
+		archcraft-hooks.hook
+		archcraft-hooks-runner
+		archcraft-lsb-release.hook
+		archcraft-os-release.hook
+		archcraft-reboot-required
+		archcraft-reboot-required.hook
+		archcraft-reboot-required2
+)
+
+sha512sums=('4562bbc5a9fc961eb133518de824eeeeb738708d9095a1b55137d4abef976aa50f3cf62b5e0f84aed518a477506103e80a2ff828b47f729fbcf56756b1c5bd3e'
+            '44f58562dc2ac7e2aa0a5a293bf87a8eef2073161c8c0b35e0546312e62c118d62110830ebe81e821de76160d121ffbb024d7bffb0cf21dd45aa52b3f88ee827'
+            '0a08eee25147c6e3540f10b14113427cbe8d5bb3c17b3885c097de8a0af05ec5fa7afe3ceeb1098417933988d7904aaab0478f816aebfc535e20419d99615838'
+            '4e145bb90ceb6facb02d43e7b8395a2b61afd9cd47c0c5e9338b9ba7f059dde0715a2db6b5156bcf5a44351a8d9bda61211caf0a9d6281655d4d443d4f32bc3d'
+            '52b9bcff4bb1031a5cf47241a1ca2a485b244b34e11cb6c25a2a75ef3b37276c0123324618b7874d1d8f1b41df0eab54587a1a593734ca07363bdb4d5170f6bd'
+            '4089662205cd1127fcffd17dde628558d5d05326f84d22198d72222652feddabc9a72f91ccf9460bfec0a951631f9bcaabc1b7521f6ec83a78b81e8071ca1677'
+            'e335a58e5fc289f063a80b74d137be105d801b89158e187eb1b2fc7c90b69cbc8e451d46d94910d9df37955116a8c93b296e526f0bf0ad592a71bdbed9eefae4')
+
+package() {
+  local hooks=$pkgdir/usr/share/libalpm/hooks
+  local bin=$pkgdir/usr/bin
+
+  install -Dm644 archcraft-lsb-release.hook      	$hooks/archcraft-lsb-release.hook
+  install -Dm644 archcraft-os-release.hook       	$hooks/archcraft-os-release.hook
+  install -Dm644 archcraft-hooks.hook           	$hooks/archcraft-hooks.hook
+  install -Dm644 archcraft-reboot-required.hook  	$hooks/archcraft-reboot-required.hook
+
+  install -Dm755 archcraft-reboot-required       	$bin/archcraft-reboot-required
+  install -Dm755 archcraft-reboot-required2      	$bin/archcraft-reboot-required2
+  install -Dm755 archcraft-hooks-runner         	$bin/archcraft-hooks-runner
+}

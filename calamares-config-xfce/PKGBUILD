@@ -1,0 +1,20 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname=calamares-config-xfce
+pkgver=1.0
+pkgrel=1
+pkgdesc="Calamares configuration for Archcraft."
+arch=('any')
+license=('GPL')
+provides=($pkgname)
+conflicts=('calamares-config')
+depends=()
+
+package() {
+	# copy whole calamares dir recursively in /etc
+	(find calamares -type f -exec install -Dm 644 "{}" "$pkgdir/etc/{}" \;)
+	# make scripts executable
+	chmod 755 "$pkgdir"/etc/calamares/launch.sh
+	chmod 755 "$pkgdir"/etc/calamares/branding/default/test_slides.sh
+}
+

@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = xfce-hooks
+
+[Action]
+Description = Updating Archcraft specific config...
+When = PostTransaction
+Exec = /usr/bin/archcraft-hooks-runner
